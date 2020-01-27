@@ -1,0 +1,9 @@
+with incnum as (
+select trunc(sysdate)+rownum as DATE_,
+LTRIM(RTRIM(to_char(trunc(sysdate)+rownum, 'DAY'))) as DayOfWeek,
+LTRIM(RTRIM(to_char(trunc(sysdate)+rownum, 'MONTH'))) as Month
+from dual
+connect by rownum < rownum+1000
+)
+    select DATE_, DayOfWeek, Case when DayOfWeek not in ('SATURDAY', 'SUNDAY') then 'Y' ELSE 'N' END BusinessDay_Flag, Month 
+    from incnum
