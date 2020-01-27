@@ -1,3 +1,5 @@
+--This is for Oracle Database Only
+
 with incnum as (
 select trunc(sysdate)+rownum as DATE_,
 LTRIM(RTRIM(to_char(trunc(sysdate)+rownum, 'DAY'))) as DayOfWeek,
